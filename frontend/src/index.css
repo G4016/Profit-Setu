@@ -1,0 +1,298 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1c33;
+  color: #ffffff;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0b1c33, #08162a);
+}
+
+.login-box {
+  width: 420px;
+  padding: 32px 36px;
+  border-radius: 18px;
+  background: rgba(17, 34, 64, 0.95);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.app-logo {
+  width: 120px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.app-title {
+  margin: 0;
+}
+
+.tagline {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+button.subscribed {
+  background: #14532d;
+  color: #22c55e;
+}
+
+.switch {
+  margin-top: 12px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.dashboard-layout {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+  background: #08162a;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 40px;
+}
+
+.logout-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+}
+
+.panel {
+  background: #112240;
+  border-radius: 10px;   /* was too rounded */
+  padding: 20px;
+}
+
+/* =========================
+   SUPPORTED STOCKS (LEFT)
+========================= */
+
+.stock-row.simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 64px;                /* FIXED height */
+  padding: 0 8px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+
+.stock-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stock-meta img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.ticker {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   WATCHLIST (RIGHT)
+========================= */
+
+.watch-card.detailed {
+  display: grid;
+  grid-template-columns: 220px 200px;
+
+  height: 70px;                /* FIXED height */
+  align-items: center;
+
+  padding: 0 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+
+.watch-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.watch-left img {
+  width: 32px;
+  height: 32px;
+}
+
+/* =========================
+   WATCHLIST TABLE
+========================= */
+
+.watch-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+.watch-table th,
+.watch-table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.watch-table thead {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   PRICE TREND COLORS
+========================= */
+
+.up {
+  color: #22c55e;
+  animation: rise 0.25s ease;
+}
+
+.down {
+  color: #ef4444;
+  animation: fall 0.25s ease;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes rise {
+  from { transform: translateY(6px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fall {
+  from { transform: translateY(-6px); }
+  to { transform: translateY(0); }
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px 0;
+}
+
+.tab {
+  background: #112240;
+  padding: 10px 20px;
+  border-radius: 8px;          /* reduced from round */
+  font-weight: 600;
+}
+
+.tab.active {
+  background: #22c55e;
+  color: #000;
+}
+
+/* Single column when tabs used */
+.content.single {
+  grid-template-columns: 1fr;
+}
+
+
+/* =========================
+   TAB CONTENT CONTAINER FIX
+========================= */
+
+/* Center tab content and prevent over-stretching */
+.content.single {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Make Supported Stocks / Watchlist look like square containers */
+.content.single .panel {
+  width: 100%;
+  max-width: 900px;          /* KEY: controls compactness */
+  padding: 24px 28px;        /* balanced padding */
+}
+
+/* Slightly tighter rows now that container is compact */
+.stock-row.simple {
+  padding: 0 6px;
+}
+
+.watch-card.detailed {
+  padding: 0 6px;
+}
