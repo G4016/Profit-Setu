@@ -88,7 +88,9 @@ export default function Dashboard({ user, logout }) {
             <div className="tagline">Smart Analytics for Smarter Investments</div>
           </div>
         </div>
-
+        <div className="user-info">
+          <span className="user-email">Logged in as: <b>{user.email}</b></span>
+        </div>
         <button className="logout-btn" onClick={logout}>
           Logout
         </button>
