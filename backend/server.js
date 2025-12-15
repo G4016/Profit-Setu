@@ -14,11 +14,10 @@ const PORT = 4000;
 ========================= */
 
 const pool = mysql.createPool({
-  host: "127.0.0.1",
-  user: "root",
-  password: "",          // change if needed
-  database: "profit_setu",
-  port: 3306
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // Test DB connection
@@ -134,6 +133,7 @@ app.delete("/api/subscriptions", async (req, res) => {
   res.json({ success: true });
 });
 
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+  console.log(`Backend running on port ${PORT}`);
 });
