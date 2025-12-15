@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const API = "http://localhost:4000/api";
+
+const API = "https://profit-setu.onrender.com/api";
+
 
 export default function LoginPage({ onLogin }) {
   const [isSignup, setIsSignup] = useState(false);
