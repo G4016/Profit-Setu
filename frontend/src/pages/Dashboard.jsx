@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import StockCard from "../components/StockCard";
 import Watchlist from "../components/Watchlist";
 
-const API = "http://localhost:4000/api";
+
+const API = "https://profit-setu.onrender.com/api";
 const MAX_POINTS = 20;
 
 export default function Dashboard({ user, logout }) {
