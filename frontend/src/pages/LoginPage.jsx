@@ -40,10 +40,14 @@ const submit = async () => {
   }
 };
 
-const isDisabled =
-  !email || !password || (isSignup && password.length < 6);
+// const isDisabled =
+//   !email || !password || (isSignup && password.length < 6);
 
-<button disabled={isDisabled} onClick={submit}>
+// <button disabled={isDisabled} onClick={submit}>
+//   {isSignup ? "Sign Up" : "Login"}
+// </button>
+
+<button onClick={submit}>
   {isSignup ? "Sign Up" : "Login"}
 </button>
 
