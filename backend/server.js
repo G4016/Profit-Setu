@@ -148,7 +148,54 @@ app.delete("/api/subscriptions", async (req, res) => {
   res.json({ success: true });
 });
 
+/* =========================
+   DB INITIALIZATION (IMPORTANT)
+========================= */
+
+async function initDB() {
+  try {
+    // USERS TABLE
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL
+      )
+    `);
+
+    // SUBSCRIPTIONS TABLE
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS subscriptions (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        stock_symbol VARCHAR(10) NOT NULL,
+        UNIQUE KEY unique_user_stock (user_id, stock_symbol),
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `);
+
+    console.log("DB schema initialized successfully");
+  } catch (err) {
+    console.error("DB INIT ERROR:", err);
+  }
+}
+
+
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
-});
+await initDB();
+// app.listen(PORT, () => {
+//   console.log(`Backend running on port ${PORT}`);
+// });
+
+(async () => {
+  try {
+    await initDB();
+
+    app.listen(PORT, () => {
+      console.log(`Backend running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Startup failed:", err);
+  }
+})();
+
